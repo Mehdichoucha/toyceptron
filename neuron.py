@@ -1,24 +1,14 @@
-class Neuron:
-    def __init__(self, poid, bias):
-        """
-        poid : liste de nombres (poids)
-        bias : nombre
-        """
-        self.poid = poid
+class Neuron :
+    def __init__(self,weights, bias):
+        self.weights = weights
         self.bias = bias
 
-    def forward(self, inputs):
-        """
-        inputs : liste de nombres (même taille que poid)
-        retourne : somme pondérée + biais
-        """
+    def forward(self, input):
+        if len(input) != len(self.weights):
+            print("Nein")
+            return -1
         total = 0
-
-        # Produit scalaire
-        for w, x in zip(self.poid, inputs):
-            total += w * x
-
-        # Ajout du biais
-        total += self.bias
-
+        for i in range(len(input)):
+            total = total + input[i] * self.weights[i]
+        total = total + self.bias
         return total

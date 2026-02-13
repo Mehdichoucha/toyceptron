@@ -17,8 +17,8 @@ print("Input:", x)
 # --- Test neurone individuel ---
 print("\n--- Test Neuron ---")
 # les neurones ont 3 biais pour correspondre à la taille de notre input
-n1 = Neuron(poid=[0.2, -0.1, 0.4], bias=0.0)
-n2 = Neuron(poid=[-0.4, 0.3, 0.1], bias=0.1)
+n1 = Neuron(weights=[0.2, -0.1, 0.4], bias=0.0)
+n2 = Neuron(weights=[-0.4, 0.3, 0.1], bias=0.1)
 
 out_n1 = n1.forward(x)
 out_n2 = n2.forward(x)
@@ -33,11 +33,11 @@ print("\n--- Test Layer ---")
 # Mêmes valeurs, mais on ajoute les deux neurones en une seule fois dans la couche
 # On devrait avoir des résultats identiques
 layer = Layer(
-    poid_list=[
+    weights_list=[
         [0.2, -0.1, 0.4],
         [-0.4, 0.3, 0.1],
     ],
-    bias_list=[0.0, 0.1],
+    biases_list=[0.0, 0.1],
 )
 
 raw = layer.forward(x)
@@ -52,30 +52,30 @@ print("\n--- Test Network ---")
 net = Network(input_size=3, activation=act_sigmoid)
 # 1. On commence par une couche "cachée"
 net.add(
-    poid=[
+    weights=[
         [0.2, -0.1, 0.4],
         [-0.4, 0.3, 0.1],
     ],
-    bias=[0.0, 0.1],
+    biases=[0.0, 0.1],
 )
 
 # 2. La deuxième couche est cachée aussi
 net.add(
-    poid=[
+    weights=[
         [0.5, -0.2],  # la taille correspond au nombre de neurones couche 1
         [-0.3, 0.4],
         [0.1, 0.2],
     ],
-    bias=[0.0, 0.1, -0.1],
+    biases=[0.0, 0.1, -0.1],
 )
 
 # 3. Couche de sortie
 net.add(
-    poid=[
+    weights=[
         [0.3, -0.1, 0.2],  # taille = nombre de neurones couche 2
         [-0.5, 0.4, 0.1],
     ],
-    bias=[-0.1, 0.0],
+    biases=[-0.1, 0.0],
 )
 
 # Feedforward complet (via Network)
