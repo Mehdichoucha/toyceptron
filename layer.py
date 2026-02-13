@@ -1,21 +1,18 @@
+from neuron import Neuron
+
 class Layer:
-
-    def __init__(self, weights_list = [], biases_list=[]):
+    def __init__(self, weights_list=[], biases_list=[]):
         self.neurons = []
-        for i in range (len(weights_list)):
-            self.weights_list = weights_list[i]
-        for i in range (len(biases_list)):
-            self.biases_list = biases_list[i]
 
+        for i in range(len(weights_list)):
+            n = Neuron(weights=weights_list[i], bias=biases_list[i])
+            self.neurons.append(n)
 
-    def forward(self, inpt):
+    def forward(self, input):
+        outputs = []
 
-        for neuron in self.neurons:
-            neuron.forward
-        self.input = inpt
+        for n in self.neurons:
+            output = n.forward(input)
+            outputs.append(output)
 
-        total = 0
-
-        for o in range(len(inpt)):
-            total += inpt[o] * self.weights[o]
-            print("yo", o)
+        return outputs
