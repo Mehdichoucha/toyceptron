@@ -27,7 +27,6 @@ class Neuron:
         
         for i in range(len(inpt)):
             total += inpt[i] * self.weights[i]
-            print("yo", i)
 
         total += self.bias
         return total
