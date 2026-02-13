@@ -3,7 +3,7 @@ from math import exp
 from network import Network
 from layer import Layer
 from neuron import Neuron
-from activation import act_relu, act_threshold, act_identity
+#from activation import act_relu, act_threshold, act_identity
 
 
 def act_sigmoid(x):
@@ -43,9 +43,7 @@ layer = Layer(
 raw = layer.forward(x)
 activated = [act_sigmoid(o) for o in raw]
 print("Couche (valeurs brutes):", raw)  # [1.6, 0.7]
-print(
-    "Couche (valeurs activées):", activated
-)  # [0.8320183851339245, 0.6681877721681662]
+print("Couche (valeurs activées):", activated)  # [0.8320183851339245, 0.6681877721681662]
 
 # --- Test du réseau entier ---
 print("\n--- Test Network ---")
